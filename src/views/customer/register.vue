@@ -1,5 +1,5 @@
 <template>
   <div>
-    HOME
+    客户登记
   </div>
 </template>

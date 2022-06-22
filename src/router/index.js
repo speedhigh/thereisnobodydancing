@@ -22,7 +22,7 @@ const routes= [
       {
         path: '/business/stats',
         name: 'BusinessStats',
-        component:() => import('../views/business/index.vue'),
+        component:() => import('../views/business/stats.vue'),
         meta: { name: 'Business' }
       },
       // 业务下发
@@ -34,6 +34,57 @@ const routes= [
       },
     ]
   },
+  /** ----- 客户管理 ----- **/
+  {
+    path: '/customer',
+    component: Layout,
+    redirect: '/customer/register',
+    children: [
+      // 客户登记
+      {
+        path: '/customer/register',
+        name: 'CustomerRegister',
+        component:() => import('../views/customer/register.vue'),
+        meta: { name: 'Customer' }
+      },
+      // 客户查询
+      {
+        path: '/customer/search',
+        name: 'CustomerSearch',
+        component:() => import('../views/customer/search.vue'),
+        meta: { name: 'Customer' }
+      },
+      // 客户业务统计
+      {
+        path: '/customer/stats',
+        name: 'CustomerStats',
+        component:() => import('../views/customer/stats.vue'),
+        meta: { name: 'Customer' }
+      }
+    ]
+  },
+  /** ----- 用户管理 ----- **/
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/information',
+    children: [
+      // 个人信息
+      {
+        path: '/user/information',
+        name: 'UserInformation',
+        component:() => import('../views/user/index.vue'),
+        meta: { name: 'User' }
+      },
+      // 修改密码
+      {
+        path: '/user/password',
+        name: 'UserPassword',
+        component:() => import('../views/user/password.vue'),
+        meta: { name: 'User' }
+      }
+    ]
+  }
 ]
 
 const router = createRouter({
