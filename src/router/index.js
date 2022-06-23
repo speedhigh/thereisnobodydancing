@@ -32,6 +32,13 @@ const routes= [
         component:() => import('../views/business/issuance.vue'),
         meta: { name: 'Business' }
       },
+      // 业务详情
+      {
+        path: '/business/detail/:id',
+        name: 'BusinessDetail',
+        component:() => import('../views/business/detail.vue'),
+        meta: { name: 'Business' }
+      }
     ]
   },
   /** ----- 客户管理 ----- **/
@@ -74,13 +81,6 @@ const routes= [
         path: '/user/information',
         name: 'UserInformation',
         component:() => import('../views/user/index.vue'),
-        meta: { name: 'User' }
-      },
-      // 修改密码
-      {
-        path: '/user/password',
-        name: 'UserPassword',
-        component:() => import('../views/user/password.vue'),
         meta: { name: 'User' }
       }
     ]

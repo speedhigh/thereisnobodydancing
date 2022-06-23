@@ -1,7 +1,7 @@
 <template>
   <div class="relative h-screen bg-[url('/src/assets/images/login-bg.svg')] flex items-center">
     <div 
-      class="w-[1200px] h-[700px] bg-base-100 mx-auto rounded-[30px] px-[4.31rem] py-14 relative"
+      class="w-[1200px] h-[700px] bg-base-100 mx-auto rounded-badge px-[4.31rem] py-14 relative"
       style="box-shadow: 0px 0px 59px 7px rgba(255, 67, 42, 0.3)"  
     >
       <img :src="loginImg" alt="插画" width="575" height="540" class="absolute top-[22px] left-[70px] w-[575px] h-[540px]">
@@ -22,10 +22,15 @@
           <input type="text" placeholder="请输入您的密码" class="text-lg">
         </div>
         <!-- 忘记密码 -->
-        <div class="mt-6 text-right text-lg text-gray-400">忘记密码</div>
+        <div class="mt-6 text-right text-lg text-gray-400 cursor-pointer">忘记密码</div>
         <!-- btn-登录 -->
         <div class="mt-12 text-center">
-          <button class="w-[20.71rem] h-[3.73rem] bg-primary text-base-100 text-2xl rounded-3xl">登录</button>
+          <button 
+            class="w-[20.71rem] h-[3.73rem] bg-primary text-base-100 text-2xl rounded-badge hover:opacity-70"
+            @click="$router.push('/business/stats')"
+          >
+            登录
+          </button>
         </div>
       </div>
     </div>

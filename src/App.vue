@@ -14,7 +14,7 @@ textarea {
   resize: none !important
 }
 ::-webkit-scrollbar {
-  @apply h-3 rounded-b-md bg-orange-50
+  @apply h-2 rounded-btn bg-orange-50
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-orange-300 rounded cursor-pointer hover:bg-orange-400
