@@ -11,6 +11,8 @@
       menuClassName="dp-custom-menu"
       :format="format"
       @update:modelValue="handleDate"
+      @open="openDate"
+      @closed="closeDate"
     >
       <!-- 自定义星期头部 -->
       <template #calendar-header="{ index, day }">
@@ -31,7 +33,15 @@
         <p>{{ value + 1 }} 月</p>
       </template>
     </Datepicker>
-    <svg v-show="!date" xmlns="http://www.w3.org/2000/svg" class="-ml-8 h-5 w-5 text-gray-500 cursor-pointer" viewBox="0 0 20 20" fill="currentColor">
+    <svg 
+      v-show="!date"  
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20" 
+      fill="currentColor"
+      class="-ml-8 h-5 w-5 text-gray-500 cursor-pointer z-10"
+      :class="{'transition duration-200 rotate-180' : isOpen}"
+      @click="changeDate"
+    >
       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
     </svg>
   </div>
@@ -50,6 +60,7 @@ export default {
   setup(params, {emit}) {
     const date = ref()
     const dp = ref()
+    const isOpen = ref(false)
     const selectDate = () => {
       dp.value.selectDate()
     }
@@ -57,6 +68,7 @@ export default {
     return {
       date,
       dp,
+      isOpen,
       dayText,
       selectDate,
       handleDate() {
@@ -73,6 +85,15 @@ export default {
           return
         }
       },
+      openDate() {
+        isOpen.value = true
+      },
+      closeDate() {
+        setTimeout(() => isOpen.value = false, 100)
+      },
+      changeDate() {
+        if(!isOpen.value) dp.value.openMenu()
+      }
     }
   }
 }
@@ -89,13 +110,13 @@ export default {
   @apply rounded-box h-9 text-sm placeholder:text-gray-900 border-none bg-base-200 pr-8
 }
 .dp-custom-menu {
-  @apply border-none rounded-box shadow-xl
+  @apply rounded-box shadow-xl
 }
 .dp__action_row {
-  @apply rounded-xl
+  @apply rounded-box
 }
 .dp__range_end, .dp__range_start {
-  @apply bg-primary-focus rounded-md
+  @apply bg-primary-focus rounded-btn
 }
 .dp__instance_calendar {
   @apply p-2
@@ -105,7 +126,7 @@ export default {
 }
 /* 今天 */
 .dp__today {
-  @apply border-primary-focus rounded-lg
+  @apply border-primary-focus rounded-btn
 }
 .dp__overlay_cell_active {
   @apply bg-primary-focus

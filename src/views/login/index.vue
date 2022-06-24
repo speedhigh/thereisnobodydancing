@@ -27,7 +27,7 @@
         <div class="mt-12 text-center">
           <button 
             class="w-[20.71rem] h-[3.73rem] bg-primary text-base-100 text-2xl rounded-badge hover:opacity-70"
-            @click="$router.push('/business/stats')"
+            @click="login"
           >
             登录
           </button>
@@ -38,5 +38,13 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
 import loginImg from '/src/assets/images/login-img.png'
+import Message from '/src/components/Message/Message.js'
+
+const router = useRouter()
+const login = function() {
+  Message({ text: '恭迎老祖', type: 'success' })
+  router.push('/business/stats')
+}
 </script>

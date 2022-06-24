@@ -43,6 +43,8 @@
 import { ref, watch } from 'vue'
 import logoImg from '/src/assets/images/logo.png'
 import { useRouter, useRoute } from 'vue-router'
+import Dialog from '/src/components/Dialog/Dialog.js'
+import Message from '/src/components/Message/Message.js'
 
 const router = useRouter()
 const route = useRoute()
@@ -50,7 +52,10 @@ const showMenu = ref(false)
 // 退出登录
 const quit = function() {
   showMenu.value = false
-  router.push('/login')
+  Dialog({ text: '您确定要退出登录吗？' }).then(() => {
+    router.replace('/login')
+    Message({ text: '您已成功退出登录', type: 'success' })
+  })
 }
 watch(() => route.path, value => {
   console.log(value)
