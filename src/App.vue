@@ -17,9 +17,9 @@ textarea {
   @apply h-2 rounded-btn bg-orange-50
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-orange-300 rounded cursor-pointer hover:bg-orange-400
+  @apply bg-orange-400 rounded cursor-pointer hover:bg-orange-400
 }
 ::-webkit-scrollbar:vertical {
-  @apply hidden
+  @apply w-1 rounded-btn bg-orange-50
 }
 </style>

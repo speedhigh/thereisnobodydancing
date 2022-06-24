@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed top-0 inset-x-0 max-w-[1366px] w-full mx-auto bg-base-100 h-16 flex items-center px-5 shadow z-[1000]">
+  <header class="fixed top-0 inset-x-0 max-w-[1366px] w-full mx-auto bg-base-100 h-16 flex items-center px-5 shadow z-[999]">
     <!-- logo -->
     <img :src="logoImg" width="101" height="36" alt="光大健康" class="w-[101px] h-9">
     <!-- avatar -->
