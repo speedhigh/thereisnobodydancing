@@ -56,16 +56,16 @@
         <div class="w-1.5 h-6 rounded bg-primary" />
         <h2 class="ml-2.5">业务下发明细</h2>
         <!-- 筛选 -->
-        <BaseSift class="ml-auto" />
+        <BaseSift v-if="list.length > 0" class="ml-auto" />
         <!-- 搜索 -->
-        <div class="ml-5 w-72 h-9 flex items-center justify-between bg-base-200 text-gray-500 rounded-box px-4">
+        <div v-if="list.length > 0" class="ml-5 w-72 h-9 flex items-center justify-between bg-base-200 text-gray-500 rounded-box px-4">
           <input type="text" placeholder="搜索关键词" class="bg-base-200 text-sm">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
       </div>
-      <div class="mt-5 w-full rounded-btn shadow-lg shadow-orange-200/50 overflow-x-scroll">
+      <div v-if="list.length > 0" class="mt-5 w-full rounded-btn shadow-lg shadow-orange-200/50 overflow-x-scroll">
         <table class="table min-w-full">
           <thead>
             <tr>
@@ -107,11 +107,17 @@
           </tbody>
         </table>
       </div>
+      <!-- 暂无下发明细 -->
+      <div v-if="list.length === 0" class="py-20">
+        <img :src="emptyImg" alt="empty" width="406" height="306" class="mx-auto">
+        <p class="mt-4 text-center text-gray-500">暂无下发明细</p>
+      </div>
     </section>
   </main>
 </template>
 
 <script setup>
+import emptyImg from '/src/assets/images/empty/business.svg'
 import BaseSift from '/src/components/BaseSift.vue'
 const list = [
   { id: '202208083363', name: '老祖', customer: '九色鹿', date: '2022-08-08', link: 'https://www.zcool.com.cn/u/21569339', state: 0  },

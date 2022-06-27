@@ -4,7 +4,7 @@
     :class="fade ? 'transition-all duration-300 bg-[rgba(0,0,0,0.7)]' : 'bg-[rgba(0,0,0,0.5)]'"
   >
     <div 
-      class="w-[400px] p-6 bg-white rounded-2xl shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2"
+      class="w-[400px] p-6 bg-base-100 rounded-2xl shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2"
       :class="fade ? 'transition-all duration-300  transform -translate-y-1/2 opacity-100' : ' transform -translate-y-[60%] opacity-0'"
     >
       <p class="font-bold text-2xl">{{ title }}</p>
@@ -18,7 +18,7 @@
           取消
         </button>
         <button 
-          class="btn btn-primary bg-primary-focus text-white"
+          class="btn btn-primary bg-primary-focus text-base-100"
           @click.stop="submitCallback"
         >
           确定

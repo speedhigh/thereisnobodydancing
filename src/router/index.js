@@ -84,6 +84,12 @@ const routes= [
         meta: { name: 'User' }
       }
     ]
+  },
+  /** -------404------- **/
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component:() => import('../views/404/index.vue')
   }
 ]
 

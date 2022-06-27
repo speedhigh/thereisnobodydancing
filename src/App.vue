@@ -20,6 +20,6 @@ textarea {
   @apply bg-orange-400 rounded cursor-pointer hover:bg-orange-400
 }
 ::-webkit-scrollbar:vertical {
-  @apply w-1 rounded-btn bg-orange-50
+  @apply hidden
 }
 </style>

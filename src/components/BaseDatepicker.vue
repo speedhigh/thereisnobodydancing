@@ -26,7 +26,7 @@
       </template>
       <!-- 自定义确认按钮 -->
         <template #action-select>
-        <p class="cursor-pointer bg-primary-focus mb-2 w-20 ml-auto text-center rounded-md text-white leading-7 hover:ring-2" @click="selectDate">确认</p>
+        <p class="cursor-pointer bg-primary mb-2 w-20 ml-auto text-center rounded-md text-base-100 leading-7 hover:ring-2" @click="selectDate">确认</p>
       </template>
       <!-- 自定义月菜单 -->
       <template #month-overlay="{ text, value }">
@@ -116,7 +116,7 @@ export default {
   @apply rounded-box
 }
 .dp__range_end, .dp__range_start {
-  @apply bg-primary-focus rounded-btn
+  @apply bg-primary rounded-btn
 }
 .dp__instance_calendar {
   @apply p-2
@@ -126,10 +126,10 @@ export default {
 }
 /* 今天 */
 .dp__today {
-  @apply border-primary-focus rounded-btn
+  @apply border-primary rounded-btn
 }
 .dp__overlay_cell_active {
-  @apply bg-primary-focus
+  @apply bg-primary
 }
 .dp__selection_preview {
   @apply text-sm font-bold text-primary

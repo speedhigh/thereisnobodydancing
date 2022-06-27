@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen bg-[url('/src/assets/images/login-bg.svg')] flex items-center">
+  <div class="relative h-screen bg-[url('/src/assets/images/login/background.svg')] flex items-center">
     <div 
       class="w-[1200px] h-[700px] bg-base-100 mx-auto rounded-badge px-[4.31rem] py-14 relative"
       style="box-shadow: 0px 0px 59px 7px rgba(255, 67, 42, 0.3)"  
@@ -39,7 +39,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import loginImg from '/src/assets/images/login-img.png'
+import loginImg from '/src/assets/images/login/illustration.png'
 import Message from '/src/components/Message/Message.js'
 
 const router = useRouter()

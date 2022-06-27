@@ -67,7 +67,7 @@
               <!-- 所属医院 -->
               <td>{{ item.hospital }}</td>
               <!-- 操作 -->
-              <td class="text-primary text-center cursor-pointer">删除客户</td>
+              <td class="text-primary-focus text-center cursor-pointer">删除客户</td>
             </tr>
           </tbody>
         </table>

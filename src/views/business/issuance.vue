@@ -45,14 +45,9 @@
         <!-- title -->
         <div class="w-1.5 h-6 rounded bg-primary" />
         <h2 class="ml-2.5">产品生成明细</h2>
-        <!-- Cascader -->
-        <button class="ml-auto w-32 h-9 flex items-center justify-between bg-base-200 text-gray-500 rounded-box px-4">
-          <p>筛选</p>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </button>
-        <!-- search -->
+        <!-- 筛选 -->
+        <BaseSift class="ml-auto" />
+        <!-- 搜索 -->
         <div class="ml-5 w-72 h-9 flex items-center justify-between bg-base-200 text-gray-500 rounded-box px-4">
           <input type="text" placeholder="搜索关键词" class="bg-base-200 text-sm">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -107,6 +102,7 @@
 </template>
 
 <script setup>
+import BaseSift from '/src/components/BaseSift.vue'
 const list = [
   { id: '202208083363', name: '老祖', customer: '九色鹿', date: '2022-08-08', link: 'https://www.zcool.com.cn/u/21569339', state: 0  },
   { id: '202208083363', name: '老祖', customer: '九色鹿', date: '2022-08-08', link: 'https://www.zcool.com.cn/u/21569339', state: 0  },
