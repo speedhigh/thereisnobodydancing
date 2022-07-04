@@ -53,6 +53,7 @@ const showMenu = ref(false)
 const quit = function() {
   showMenu.value = false
   Dialog({ text: '您确定要退出登录吗？' }).then(() => {
+    sessionStorage.removeItem('token')
     router.replace('/login')
     Message({ text: '您已成功退出登录', type: 'success' })
   })

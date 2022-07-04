@@ -16,7 +16,7 @@
     <van-popup 
       v-model:show="show" 
       round
-      :style="{ height: '500px', width: '400px' }"
+      :style="{ height: '550px', width: '450px' }"
       class="p-2 modal-box"
     >
       <van-cascader
@@ -68,15 +68,15 @@ const options = [
     ],
   },
   {
-    text: '江苏省',
+    text: '吉林省',
     value: '320000',
     children: [
       { 
-        text: '南京市', 
+        text: '乌鲁木齐市', 
         value: '320100',
         children: [
           {
-            text: '南京美容美体医疗中心大医院',
+            text: '华盛顿专属美容美体医院',
             value: 'nj001',
             children: [
               { text: '瓦莉拉·妮谷拉丝·安', value: 'mj1' },

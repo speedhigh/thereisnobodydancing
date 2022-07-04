@@ -8,7 +8,12 @@
         <p class="text-2xl font-bold">老祖</p>
         <p class="text-lg text-gray-500">手机号：17076868695</p>
       </div>
-      <button class="ml-auto w-[7.5rem] h-10 bg-primary text-base-100 text-sm rounded-btn hover:opacity-70">退出登录</button>
+      <button 
+        class="ml-auto w-[7.5rem] h-10 bg-primary text-base-100 text-sm rounded-btn hover:opacity-70"
+        @click="quit"
+      >
+        退出登录
+      </button>
     </section>
     <!-- section  统计 -->
     <section class="flex">
@@ -88,3 +93,18 @@
     </section>
   </main>
 </template>
+
+<script setup>
+import Dialog from '/src/components/Dialog/Dialog.js'
+import Message from '/src/components/Message/Message.js'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const quit = function() {
+  Dialog({ text: '您确定要退出登录吗？' }).then(() => {
+    sessionStorage.removeItem('token')
+    router.replace('/login')
+    Message({ text: '您已成功退出登录', type: 'success' })
+  })
+}
+</script>

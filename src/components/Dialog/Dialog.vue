@@ -12,13 +12,13 @@
       <div class="mt-5 text-right space-x-2">
         <button
           v-show="showCancel"
-          class="btn btn-outline border-primary-focus text-primary-focus hover:text-primary-focus hover:bg-base-100 hover:border-primary-focus"
+          class="btn btn-outline border-primary-focus text-primary-focus hover:text-primary-focus hover:bg-base-200 hover:border-primary-focus"
           @click.stop="cancelCallback"
         >
           取消
         </button>
         <button 
-          class="btn btn-primary bg-primary-focus text-base-100"
+          class="btn btn-primary bg-primary-focus text-base-100 hover:opacity-70"
           @click.stop="submitCallback"
         >
           确定
