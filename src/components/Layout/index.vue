@@ -2,7 +2,7 @@
   <div class="relative pt-16">
     <!-- header -->
     <LayoutHeader />
-    <div class="relative bg-gray-50" :style="{ minHeight: contentHeight + 'px' }">
+    <div class="relative">
       <!-- menu -->
       <LayoutMenu />
       <!-- content -->
@@ -16,5 +16,4 @@
 <script setup>
 import LayoutHeader from './LayoutHeader.vue'
 import LayoutMenu from './LayoutMenu.vue'
-const contentHeight = document.documentElement.clientHeight - 64
 </script>

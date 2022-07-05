@@ -1,6 +1,6 @@
 <template>
   <div class="bg-base-300 text-gray-900 min-h-screen h-full">
-    <div class="container mx-auto max-w-[1366px] bg-base-100 min-h-screen cursor-default">
+    <div class="container mx-auto max-w-[1366px] min-h-screen cursor-default bg-gray-50">
       <router-view />
     </div>
   </div>

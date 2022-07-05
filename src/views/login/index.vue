@@ -21,10 +21,8 @@
           </svg>
           <input v-model="form.password" type="password" placeholder="请输入您的密码" autocomplete="on" class="text-lg">
         </div>
-        <!-- 忘记密码 -->
-        <div class="mt-6 text-right text-lg text-gray-400 cursor-pointer">忘记密码</div>
         <!-- btn-登录 -->
-        <div class="mt-12 text-center">
+        <div class="mt-14 text-center">
           <button
             class="w-[20.71rem] h-[3.73rem] bg-primary text-base-100 text-2xl rounded-badge hover:opacity-70 disabled:opacity-70"
             :disabled="loginDisabled"
@@ -39,7 +37,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import loginImg from '/src/assets/images/login/illustration.png'
 import api from '/src/api/index.js'
