@@ -14,7 +14,7 @@
     </button>
 
     <van-popup 
-      v-model:show="show" 
+      v-model:show="show"
       round
       :style="{ height: '550px', width: '450px' }"
       class="p-2 modal-box"

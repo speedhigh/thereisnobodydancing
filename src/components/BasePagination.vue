@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div v-show="!showLoading" class="text-center">
+    <div v-show="showLoading" class="text-center">
       <van-loading size="30" class="py-4">
         加载中，请稍后...
       </van-loading>
     </div>
-    <div v-show="showLoading">
+    <div v-show="!showLoading">
       <van-list
         v-show="localList.length > 0"
         v-model:loading="loading"
@@ -17,7 +17,7 @@
         <slot :list="localList" />
       </van-list>
       <!-- empty -->
-      <div v-if="localList.length === 0" class="mt-40">
+      <div v-if="localList.length === 0" class="mt-24">
         <img :src="emptyImg" alt="empty" width="406" height="306" class="mx-auto">
         <p class="mt-4 text-center text-gray-500">{{ descriptionTips }}</p>
       </div>
