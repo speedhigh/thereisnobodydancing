@@ -1,13 +1,13 @@
 <template>
   <main class="space-y-5 relative">
     <!-- section  统计 -->
-    <session-stat />
+    <base-stat />
     <!-- section  业务下发明细 -->
     <session-table />
   </main>
 </template>
 
 <script setup>
-import SessionStat from '/src/components/SessionStat.vue'
+import BaseStat from '/src/components/BaseStat.vue'
 import SessionTable from './components/SessionTable.vue'
 </script>

@@ -5,19 +5,19 @@
       <!-- 总成交额 -->
       <div class="stat">
         <div class="stat-title">总成交额</div>
-        <div class="stat-value text-2xl">36546.02</div>
+        <div class="stat-value text-2xl">{{ statData.zongchengjiaoe }}</div>
         <div class="stat-desc">--</div>
       </div>
       <!-- 总成交量 -->
       <div class="stat">
         <div class="stat-title">总成交量</div>
-        <div class="stat-value text-2xl">8062</div>
+        <div class="stat-value text-2xl">{{ statData.zongchengjiaoliang }}</div>
         <div class="stat-desc">--</div>
       </div>
       <!-- 客户数量 -->
       <div class="stat">
         <div class="stat-title">客户数量</div>
-        <div class="stat-value text-2xl">4021</div>
+        <div class="stat-value text-2xl">{{ statData.kehushuliang }}</div>
         <div class="stat-desc">--</div>
       </div>
     </div>
@@ -33,7 +33,7 @@
           </svg>
         </div>
         <div class="stat-title">当月成交额（元）</div>
-        <div class="stat-value text-2xl">15423.63</div>
+        <div class="stat-value text-2xl">{{ statData.dangyuechengjiaoe }}</div>
         <div class="stat-desc">较上个月：↘︎ 14%</div>
       </div>
 
@@ -46,12 +46,28 @@
           </svg>
         </div>
         <div class="stat-title">当月成交量（次）</div>
-        <div class="stat-value text-2xl">1323</div>
-        <div class="stat-desc">较上个月：↗︎ 22%</div>
+        <div class="stat-value text-2xl">{{ statData.dangyuechengjiaoliang }}</div>
+        <div class="stat-desc">较上个月：↗︎ 0%</div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import api from '/src/api/index.js'
+
+const statData = ref({
+  dangyuechengjiaoe: '',
+  dangyuechengjiaoliang: '',
+  kehushuliang: '',
+  zongchengjiaoe: '',
+  zongchengjiaoliang: '',
+})
+api.get('/salemain/anasale').then((res) => {
+  Object.assign(statData.value, res.data.data)
+})
+</script>
 
 <style>
 .fm {

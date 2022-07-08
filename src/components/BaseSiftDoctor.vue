@@ -1,11 +1,12 @@
 <template>
   <div>
     <button 
-      class="min-w-[8rem] h-9 flex items-center justify-between bg-base-200 text-gray-500 rounded-box px-4"
+      class="min-w-[8rem] flex items-center justify-between"
+      :class="boxStyle"
       @click="show=true"
     >
       <p>{{ title }}</p>
-      <svg v-if="title === '筛选'" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <svg v-if="title === defaultTitle" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
       </svg>
       <svg v-else @click.stop="clear" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 hover:text-gray-500" viewBox="0 0 20 20" fill="currentColor">
@@ -21,10 +22,11 @@
     >
       <van-cascader
         v-model="cascaderValue"
-        title="请选择所在地区"
+        :title="popupTitle"
         :options="options"
         active-color="#FF432A"
         @close="show = false"
+        @change="onChange"
         @finish="onFinish"
       />
     </van-popup>
@@ -32,71 +34,61 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { defineProps, defineEmits, ref } from 'vue'
+import api from '/src/api/index.js'
+
+const props = defineProps({
+  boxStyle: {
+    type: String,
+    default: 'h-9 bg-base-200 text-gray-500 rounded-box px-4'
+  },
+  defaultTitle: {
+    type: String,
+    default: '筛选'
+  },
+  onlyDoctor: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const emit = defineEmits(['change', 'clear'])
+
 const show = ref(false)
-const title = ref('筛选')
+const title = ref('')
+title.value = props.defaultTitle
+const popupTitle = ref('请选择所在地区')
 const cascaderValue = ref('')
-const options = [
-  {
-    text: '浙江省',
-    value: '330000',
-    children: [
-      { 
-        text: '杭州市', 
-        value: '330100', 
-        children: [
-          {
-            text: '杭州第一医院',
-            value: 'hz001',
-            children: [
-              { text: '吴良医生', value: 'hz1' },
-              { text: '大聪明医生', value: 'hz2' },
-              { text: '大漂亮医生', value: 'hz3' }
-            ]
-          },
-          {
-            text: '杭州第二医院',
-            value: 'hz002',
-            children: [
-              { text: '吴良医生2', value: 'hz21' },
-              { text: '大聪明医生2', value: 'hz22' },
-              { text: '大漂亮医生2', value: 'hz23' },
-            ]
-          },
-        ]
-      }
-    ],
-  },
-  {
-    text: '吉林省',
-    value: '320000',
-    children: [
-      { 
-        text: '乌鲁木齐市', 
-        value: '320100',
-        children: [
-          {
-            text: '华盛顿专属美容美体医院',
-            value: 'nj001',
-            children: [
-              { text: '瓦莉拉·妮谷拉丝·安', value: 'mj1' },
-            ]
-          }
-        ] 
-      }
-    ],
-  },
-]
+const options = ref([])
+
+if(sessionStorage.getItem("doctorList")) {
+  options.value = JSON.parse(sessionStorage.getItem("doctorList"))
+} else {
+  api.get('/salemain/searchdata').then((res) => {
+    options.value = res.data.data
+    sessionStorage.setItem('doctorList', JSON.stringify(res.data.data))
+  })
+}
+
+const onChange = (e) => {
+  if(e.tabIndex < 1) popupTitle.value = '请选择所在地区'
+  if(e.tabIndex === 1) popupTitle.value = '请选择医院'
+  if(e.tabIndex === 2) popupTitle.value = '请选择医生'
+}
 
 // 全部选项选择完毕后，会触发 finish 事件
 const onFinish = ({ selectedOptions }) => {
   show.value = false
-  title.value = selectedOptions.map((option) => option.text).join('/')
+  if(props.onlyDoctor) title.value = selectedOptions[selectedOptions.length - 1].text
+  if(!props.onlyDoctor) title.value = selectedOptions.map((option) => option.text).join('/')
+  emit('change', selectedOptions[selectedOptions.length - 1].value)
 }
 const clear = function() {
   cascaderValue.value = ''
-  title.value = '筛选'
+  title.value = props.defaultTitle
+  emit('clear')
 }
+defineExpose({ clear })
 </script>
 
 <style>

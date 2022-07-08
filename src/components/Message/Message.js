@@ -21,5 +21,5 @@ export default ({text,type}) => {
     clearTimeout(timer)
     timer = setTimeout(() => {
       render(null,div)
-    }, 1000)
+    }, 1100)
   }

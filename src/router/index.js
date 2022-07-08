@@ -103,7 +103,7 @@ router.beforeEach((to,from,next) => {
   if(to.path === '/login') return next()
   const tokenStr = window.sessionStorage.getItem("token")
   if(!tokenStr) {
-    Message({ text: '请先登录', type: 'warn' })
+    Message({ text: '请先登录', type: 'info' })
     next('/login')
     return
   }

@@ -12,21 +12,23 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary font-bold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
-          <input v-model="form.phone" type="text" placeholder="请输入您的账号" maxlength="11" class="text-lg" @input="changePhone">
+          <input v-model="form.phone" type="tel" placeholder="请输入您的账号" maxlength="11" class="text-lg" @input="changePhone">
         </div>
         <!-- 密码 -->
         <div class="mt-8 w-full p-2.5 border-b flex items-center space-x-4">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary font-bold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
-          <input v-model="form.password" type="password" placeholder="请输入您的密码" autocomplete="on" class="text-lg">
+          <form action="">
+            <input v-model="form.password" type="password" placeholder="请输入您的密码" autocomplete="on" class="text-lg">
+          </form>
         </div>
         <!-- btn-登录 -->
         <div class="mt-14 text-center">
           <button
             class="w-[20.71rem] h-[3.73rem] bg-primary text-base-100 text-2xl rounded-badge hover:opacity-70 disabled:opacity-70"
             :disabled="loginDisabled"
-            @click="check"
+            @click="submit"
           >
             登录
           </button>
@@ -64,15 +66,15 @@ const changePhone = function() {
   }
 }
 // 检查登录信息
-const check = function() {
+const submit = function() {
   loginDisabled.value = true
   if(!form.phone || !form.password) {
-    Message({ text: '请填写完整信息', type: 'warn' })
+    Message({ text: '请填写完整信息' })
     loginDisabled.value = false
     return
   }
   if(!checkPhone(form.phone)) {
-    Message({ text: '手机号格式不正确', type: 'warn' })
+    Message({ text: '手机号格式不正确'})
     loginDisabled.value = false
     return
   }
@@ -91,7 +93,7 @@ const login = function(postData) {
       Message({ text: '欢迎你，' + res.data.data.user.name, type: 'success' })
       router.push('/business/stats')
     } else {
-      Message({ text: res.data.msg, type: 'warn' })
+      Message({ text: res.data.msg })
       loginDisabled.value = false
     }
   })

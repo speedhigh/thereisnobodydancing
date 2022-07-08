@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '../router'
+import qs from 'qs'
 import Dialog from '/src/components/Dialog/Dialog.js'
 const baseURL = import.meta.env.VITE_APP_URL
 
@@ -56,9 +57,11 @@ api.get = function(url, params={}) {
   })
 }
 
-api.post = function(url, params) {
+api.post = function(url, params, useQs=false) {
+  let data
+  useQs ? data = qs.stringify(params) : data = params
   return new Promise((resolve) => {
-    http({ method: "post", url: url, data: params }).then((res) => { resolve(res) })
+    http({ method: "post", url: url, data:data }).then((res) => { resolve(res) })
   })
 }
 

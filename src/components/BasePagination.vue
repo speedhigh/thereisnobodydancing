@@ -17,7 +17,7 @@
         <slot :list="localList" />
       </van-list>
       <!-- empty -->
-      <div v-if="localList.length === 0" class="mt-24">
+      <div v-if="localList.length === 0" class="py-20">
         <img :src="emptyImg" alt="empty" width="406" height="306" class="mx-auto">
         <p class="mt-4 text-center text-gray-500">{{ descriptionTips }}</p>
       </div>
@@ -35,7 +35,7 @@ export default {
   props: {
     offset: {
       type: Number,
-      default: 500
+      default: 200
     },
     descriptionTips: {
       type: String,
@@ -47,7 +47,7 @@ export default {
     },
     size: {
       type: String,
-      default:'8'
+      default:'20'
     },
     params: {
       type: Object,
@@ -69,6 +69,7 @@ export default {
       loading.value = true
       if (!more) {
         currentPage.value = 1
+        finished.value = false
       }
       Object.assign(newParams, props.params, { currentPage: currentPage.value, size:size.value })
 

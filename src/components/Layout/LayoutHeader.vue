@@ -8,7 +8,11 @@
         class="flex items-center space-x-4"
         @click="showMenu = !showMenu"
       >
-        <img src="https://api.lorem.space/image/face?w=36&h=36" alt="avatar" width="36" height="36" class="w-9 h-9 rounded-badge">
+        <div  class="w-9 h-9 rounded-badge bg-gray-100 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+          </svg>
+        </div>
         <div class="flex items-center">
           <h3>{{ user.name }}</h3>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="{'transition duration-200 rotate-180' : showMenu}" viewBox="0 0 20 20" fill="currentColor">
@@ -60,7 +64,6 @@ const quit = function() {
   })
 }
 watch(() => route.path, value => {
-  console.log(value)
   if(showMenu.value) showMenu.value = false
 })
 </script>

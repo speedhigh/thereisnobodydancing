@@ -14,12 +14,19 @@ textarea {
   resize: none !important
 }
 ::-webkit-scrollbar {
-  @apply h-2 rounded-btn bg-orange-50
+  @apply hidden
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-orange-400 rounded cursor-pointer hover:bg-orange-400
+  @apply hidden
 }
 ::-webkit-scrollbar:vertical {
   @apply hidden
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.member-form,.rpo-form input[type="number"] {
+  -moz-appearance: textfield;
 }
 </style>
