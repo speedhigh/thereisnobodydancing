@@ -34,7 +34,7 @@
         </div>
         <div class="stat-title">当月成交额（元）</div>
         <div class="stat-value text-2xl">{{ statData.dangyuechengjiaoe }}</div>
-        <div class="stat-desc">较上个月：↘︎ 14%</div>
+        <div class="stat-desc">较上个月：↗︎ {{ statData.bishangyuechengjiaoe }}</div>
       </div>
 
       <div class="stat">
@@ -47,7 +47,7 @@
         </div>
         <div class="stat-title">当月成交量（次）</div>
         <div class="stat-value text-2xl">{{ statData.dangyuechengjiaoliang }}</div>
-        <div class="stat-desc">较上个月：↗︎ 0%</div>
+        <div class="stat-desc">较上个月：↘︎ {{ statData.bishangyuejiaoliang }}</div>
       </div>
     </div>
   </section>

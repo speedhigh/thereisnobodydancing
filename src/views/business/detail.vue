@@ -7,7 +7,7 @@
     </section>
 
     <!-- section  业务详情 -->
-    <section class="w-full h-[13.75rem] rounded-box shadow bg-base-100 p-5">
+    <section class="w-full rounded-box shadow bg-base-100 p-5">
       <div class="flex items-center space-x-2.5">
         <div class="w-1.5 h-6 rounded bg-primary" />
         <h2 class="ml-2.5">业务详情</h2>

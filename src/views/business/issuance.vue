@@ -8,36 +8,20 @@
       </div>
       <div class="px-4">
         <div class="mt-[1.88rem] flex items-center space-x-10">
-          <!-- 产品类型 -->
+          <!-- 选择产品 -->
           <div class="flex items-center space-x-5">
-            <p class="text-gray-500 flex-shrink-0"><span class="text-primary">*</span>产品类型</p>
-            <!-- 药品、保健品、医疗器械 -->
+            <p class="text-gray-500 flex-shrink-0"><span class="text-primary">*</span>选择产品</p>
             <div
-              v-for="(item, index) in typeList"
+              v-for="(item, index) in proList"
               :key="index"
               class="w-[7.63rem] h-[4.81rem] rounded-btn shadow cursor-pointer hover:opacity-80 relative"
               @click="active = index; linkData.href = ''"
             >
-              <img :src="item.img" :alt="item.title" width="122" height="77" class="w-full h-full rounded-btn">
+              <img :src="item.thumbnail" :alt="item.name" width="122" height="77" class="w-full h-full rounded-btn">
               <div class="absolute top-2 right-2 w-4 h-4 bg-gray-100 shadow-md rounded-full p-1">
                 <div v-show="active === index" class="w-full h-full rounded-full bg-primary" />
               </div>
               <div class="absolute bottom-0 inset-x-0 w-full bg-[rgba(0,0,0,0.5)] text-white text-center text-sm rounded-b-lg leading-6">{{ item.title }}</div>
-            </div>
-          </div>
-          <!-- 产品编码 -->
-          <div class="flex items-center space-x-5">
-            <p class="text-gray-500 flex-shrink-0"><span class="text-primary">*</span>产品编码</p>
-            <div class="w-80 bg-base-200 h-10 rounded-btn px-4 text-gray-500 flex items-center">
-              <input
-                v-model="productCode"
-                type="text"
-                placeholder="请填写产品编码"
-                class="w-full h-full bg-base-200 text-sm"
-              >
-              <svg v-show="productCode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" @click="productCode = ''" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-              </svg>
             </div>
           </div>
         </div>
@@ -51,7 +35,7 @@
               only-doctor
               box-style="w-48 bg-base-200 h-10 rounded-btn px-4 text-gray-500"
               @change="changeDoctor"
-              @clear="linkData.doctorid = linkData.href = ''"
+              @clear="linkData.doctoruuid = linkData.href = ''"
             />
           </div>
           <!-- 链接生成 -->
@@ -94,30 +78,25 @@ import typeBannerB from '/src/assets/images/business/health.png'
 import typeBannerC from '/src/assets/images/business/devices.png'
 import api from '../../api'
 
-
 const user = JSON.parse(sessionStorage.getItem('user'))
 const siftRef = ref()
 const tableRef = ref()
 // 产品类型
 const active = ref(0)
-const typeList = ref([
-  { type: 'drug', title: '药品', img: typeBannerA },
-  { type: 'health', title: '保健品', img: typeBannerB },
-  { type: 'devices', title: '医疗器械', img: typeBannerC }
-])
-// 产品编码
-const productCode = ref('')
+const proList = ref([])
+api.get('/product/getList').then((res) => {
+  proList.value = res.data.data
+})
 // 医生，链接
 const linkData = reactive({
   href: '',
-  doctorid: ''
+  doctoruuid: ''
 })
 // 切换医生
 const changeDoctor = function(id) {
-  linkData.doctorid = id
+  linkData.doctoruuid = id
   linkData.href = ''
 }
-
 const inputCopy = ref()
 const btnDisabled = ref(false)
 
@@ -131,12 +110,12 @@ const copy = function() {
 // 生成链接
 const build = function() {
   btnDisabled.value = true
-  if(!linkData.doctorid || !productCode.value) {
+  if(!linkData.doctoruuid) {
     Message({ text: '信息不完整' })
     btnDisabled.value = false
     return
   }
-  linkData.href = `http://www.guangdajiankang.com/share?userid=${user.id}&doctorid=${linkData.doctorid}&type=${typeList.value[active.value].type}&product=${productCode.value}`
+  linkData.href = `http://www.guangdajiankang.com/share?saleid=${user.uuid}&doctorid=${linkData.doctoruuid}&proid=${proList.value[active.value].id}`
   api.get('/salemain/add', linkData).then((res) => {
     if(res.data.code === 20000) {
       copy()

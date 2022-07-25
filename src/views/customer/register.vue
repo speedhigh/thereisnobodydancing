@@ -116,15 +116,16 @@ const form = reactive({
   name: '',
   mobile: '',
   hosname: '',
-  citycode: ''
+  citycode: '',
+  state: 12345
 })
 
 const btnDisabled = ref(false)
 const paginationRef = ref()
 
-/****************地区相关 ****************/
+/************** 地区相关 ***************/
 const siftCityRef = ref()
-const changeCity = function(code){
+const changeCity = function(code) {
   form.citycode = code
 }
 /**************** 登记 ****************/

@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import { ref } from 'vue'
 import api from '/src/api/index.js'
 const emit = defineEmits(['change', 'clear'])
 const props = defineProps({

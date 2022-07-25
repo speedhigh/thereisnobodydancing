@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import loginImg from '/src/assets/images/login/illustration.png'
 import api from '/src/api/index.js'
@@ -47,7 +47,12 @@ import Message from '/src/components/Message/Message.js'
 import { checkPhone } from '/src/until/index.js'
 import Encrypt from '/src/until/crypto.js'
 
+// alert('login')
+
 const router = useRouter()
+onMounted(() => {
+  router.push('/')
+})
 // 表单绑定
 const form = reactive({
   loginType: true,
@@ -89,9 +94,9 @@ const login = function(postData) {
     if(res.data.code === 20000) {
       sessionStorage.setItem('token', res.data.data.token)
       sessionStorage.setItem('user', JSON.stringify(res.data.data.user))
-      setTimeout(() => loginDisabled.value = false, 100)
       Message({ text: '欢迎你，' + res.data.data.user.name, type: 'success' })
-      router.push('/business/stats')
+      router.push('/')
+      setTimeout(() => loginDisabled.value = false, 100)
     } else {
       Message({ text: res.data.msg })
       loginDisabled.value = false
