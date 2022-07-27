@@ -1,7 +1,7 @@
 {
   "name": "thereisnobodydancing",
   "private": true,
-  "version": "1.0.5",
+  "version": "1.0.7",
   "scripts": {
     "dev": "vite",
     "dev-ming": "vite --mode ming",
@@ -13,7 +13,7 @@
     "@vuepic/vue-datepicker": "^3.3.1",
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
-    "daisyui": "^2.19.1",
+    "daisyui": "^2.20.0",
     "dayjs": "^1.11.4",
     "lodash": "^4.17.21",
     "mitt": "^3.0.0",

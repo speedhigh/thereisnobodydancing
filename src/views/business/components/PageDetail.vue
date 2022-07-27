@@ -26,7 +26,12 @@
             readonly
           >
         </div>
-        <p v-if="message.addressdetail" class="mt-6 mr-10 text-gray-500"><span class="text-primary">*</span>地址：{{ message.addressdetail }}</p>
+        <p 
+          v-if="route.query.from === 'ordermain'" 
+          class="mt-6 mr-10 text-gray-500"
+        >
+          <span class="text-primary">*</span>地址：{{ message.addressdetail }}
+        </p>
         <p class="mt-6 mr-10 text-gray-500">
           <span class="text-primary">*</span>申请产品状态：
           <span :class="message.saleMain.state === 1 ? 'text-error' : 'text-success'">{{ message.saleMain.state === 1 ? '未付款' : '已付款' }}</span>
@@ -82,7 +87,7 @@ const message = ref({
   productMain: {},
   saleMain: {}
 })
-api.get('/salemain/get', { id: route.params.id }).then((res) => {
+api.get(`/${route.query.from}/get`, { id: route.params.id }).then((res) => {
   Object.assign(message.value, res.data.data)
 })
 

@@ -61,7 +61,7 @@
                 <td class="text-center">
                   <button
                     class="w-20 h-8 bg-primary text-base-100 rounded-btn hover:opacity-70"
-                    @click="$router.push('/business/detail/' + item.id)"
+                    @click="$router.push('/business/detail/' + item.id + '?from=salemain')"
                   >
                     查看详情
                   </button>
