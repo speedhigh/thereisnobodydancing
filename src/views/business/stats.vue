@@ -1,13 +1,19 @@
 <template>
-  <main class="space-y-5 relative">
-    <!-- section  统计 -->
-    <base-stat />
-    <!-- section  业务下发明细 -->
-    <session-table />
-  </main>
+  <suspense>
+    <template #fallback>
+      <BaseLoadingPage />
+    </template>
+    <template #default>
+      <StatsAsync />
+    </template>
+  </suspense>
 </template>
 
 <script setup>
-import BaseStat from '/src/components/BaseStat.vue'
-import SessionTable from './components/SessionTable.vue'
+import { defineAsyncComponent } from 'vue'
+import BaseLoadingPage from '/src/components/BaseLoadingPage.vue'
+
+const StatsAsync = defineAsyncComponent(() =>
+  import('./components/PageStats.vue')
+)
 </script>

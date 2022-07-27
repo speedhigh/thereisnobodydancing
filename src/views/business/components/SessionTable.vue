@@ -9,7 +9,7 @@
         ref="siftRef" 
         class="ml-auto" 
         @change="changeDoctor" 
-        @clear="params.doctorid = ''"
+        @clear="params.doctoruuid = ''"
       />
       <!-- 搜索 -->
       <div class="ml-5 w-72 h-9 flex items-center justify-between bg-base-200 text-gray-500 rounded-box px-4">
@@ -55,7 +55,7 @@
                 </td>
                 <!-- 状态 -->
                 <td class="font-bold" :class="item.state === 2 ? 'text-accent' : 'text-gray-400'">
-                  {{ item.state === 2 ? '已分享' : '未分享' }}
+                  {{ item.state === 2 ? '已付款' : '未付款' }}
                 </td>
                 <!-- 操作 -->
                 <td class="text-center">
@@ -83,7 +83,7 @@ import BasePagination from '/src/components/BasePagination.vue'
 
 const params = ref({
   content: '',
-  doctorid: ''
+  doctoruuid: ''
 })
 
 const siftRef = ref()
@@ -92,12 +92,12 @@ const paginationRef = ref()
 // 切换医生
 const changeDoctor = function(id) {
   params.value.content = ''
-  params.value.doctorid = id
+  params.value.doctoruuid = id
 }
 // 输入内容
 const changeContent = function() {
   if(params.value.content) {
-    params.value.doctorid = ''
+    params.value.doctoruuid = ''
     siftRef.value.clear()
   }
 }
