@@ -8,7 +8,7 @@
       <base-sift-doctor
         ref="siftRef" 
         class="ml-auto" 
-        @change="changeDoctor" 
+        @change="changeDoctor"
         @clear="params.doctoruuid = ''"
       />
       <!-- 搜索 -->
